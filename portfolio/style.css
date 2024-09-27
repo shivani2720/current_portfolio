@@ -27,7 +27,7 @@ a{
 #wrapper-canvas{
     position: relative;
     background-color: var(--bg-black);
-    pointer-events: none;
+/*     pointer-events: none; */
    
 }
 #cursor{
