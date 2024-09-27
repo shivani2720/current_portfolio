@@ -1,0 +1,731 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: 0;
+}
+:root{
+    --bg-white:white;
+    --bg-grey:rgba(255, 255, 255, 0.491);
+    --bg-black:rgba(0, 0, 0, 0.932);
+}
+body{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: var(--bg-white);
+    background-color: var(--bg-black);
+    overflow-x: hidden;
+}
+
+
+a{
+    text-decoration: none;
+    color: var(--bg-white);
+}
+#wrapper-canvas{
+    position: relative;
+    background-color: var(--bg-black);
+    pointer-events: none;
+   
+}
+#cursor{
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.886); 
+    backdrop-filter: blur(10px);   
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.1s linear;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#cursor2{
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    background-color: var(--bg-white); 
+    font-weight: 800; 
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.1s linear;
+    opacity: 0;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+
+.main{
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--bg-white);
+    pointer-events: none;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 100%; 
+    padding: 1em 0.6em;  
+}
+nav .nav-btn{
+    padding: 0.6em 1em;
+    border-radius:1.5em;
+    pointer-events: all;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--bg-white);
+    background-color: var(--bg-black);
+    color: var(--bg-white);
+    z-index: 1;
+    font-weight: 700;
+}
+.nav-btn::after{
+   content: '';
+   height: 100%;
+   width: 100%;
+   border-radius: 1.5em;
+   position: absolute;
+   bottom: -100%;
+   left: 0;
+   background-color: var(--bg-white);
+   transition:all 0.3s linear;
+   z-index: -1;
+
+}
+.nav-btn:hover{
+    color:var(--bg-black);
+}
+.nav-btn:hover::after{
+    bottom: 0;    
+}
+.hero{
+    text-align: center;
+}
+.first{
+    overflow: hidden;
+}
+.hero .first span{
+    position: relative;
+    font-size: 15px;
+    
+    
+}
+.hero .first span::before{
+    content: '';
+    position: absolute;
+    top: 23%;
+    left: -10%;
+    height: 12px;
+    width: 12px;
+    background-color: green;
+    border-radius: 50%;
+    animation: available 1s linear infinite;
+}
+@keyframes available{
+    0%{
+      opacity: 0.3;
+    }
+    100%{
+      opacity:1;
+    }
+}
+.second{
+    overflow: hidden;
+}
+.second h1{
+    font-size: 5em;
+}
+.hero .icon {
+    overflow: hidden;
+    padding-top: 1em;
+}
+.hero .icon a {
+padding-left: 2em;
+pointer-events: all;
+}
+.hero .icon a img{
+    transition:transform 0.1s linear;
+
+}
+.icon a:hover img{
+    transform: scale(1.2);
+}
+.button{
+    position: absolute;
+    bottom: 1em;
+}
+.innerbtn{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.button .offcanvass-btn {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    color: var(--bg-white);
+    background-color: var(--bg-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--bg-white);
+    transition: 0.7s;
+    font-size: 13px;
+    cursor: pointer;
+    pointer-events: all;
+    
+
+}
+
+.offcanvass{
+    height: 100vh;
+    width: 100%;
+    color: var(--bg-white);
+    background-color: #000;
+    position: fixed; 
+    top: 0%; 
+    z-index: 100;
+   
+    
+
+}
+.offcanvas-body{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4em;
+   
+}
+.offcanvas-body .close-btn{
+    position: absolute;
+    top: 1em;
+    display: flex;
+    justify-content: end;
+    padding-right: 2em;
+    overflow: hidden;
+    
+}
+.offcanvas-body .close-btn img{
+    cursor: pointer;
+}
+.offcanvas-body .home{
+    overflow: hidden;
+    margin: 0.2em 0em;
+}
+.offcanvas-body .home a{
+    text-decoration: none;
+    color: var(--bg-white);
+}
+.offcanvas-body .home h3{
+    font-size: 4em;
+}
+.offcanvas-icon{
+    position: absolute;
+    bottom: 3em;
+    left: 0;
+    right: 0;
+
+}
+.offcanvas-icon .left{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    overflow: hidden;
+
+}
+.offcanvas-icon .left .inner-left img{
+    transition: transform 0.3s linear;
+}
+.offcanvas-icon .left .inner-left a{
+    padding-right: 2em;
+   
+}
+.offcanvas-icon .left .inner-left img:hover{
+transform: scale(1.1);
+}
+.offcanvas-body .offcanvas-icon .right{
+    overflow: hidden;
+}
+.offcanvas-icon .slide{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.offcanvas-icon .right .slide h3{
+    font-size: 16px;
+    margin:0;
+}
+
+.nav2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 0em ;
+    display: none;
+    position: fixed;
+    top: 0;
+
+}
+.nav2 .nav-list span{
+    margin: 0em 1em;
+}
+
+
+/* about section */
+
+.about{
+    padding: 2em 0em;
+    overflow: hidden;
+
+}
+
+.about-header{
+    position: relative;
+    text-align: left;
+    
+}
+ .about-header h1::before{
+    content: '';
+    height: 4px;
+    width: 50px;
+    background-color: var( --bg-white);
+    position: absolute;
+    top:100%;
+    left: 0;
+   
+}
+ .about-header h1::after{
+    content: '';
+    height: 4px;
+    width: 30px;
+    background-color:var( --bg-white);
+    position: absolute;
+    top:100%;
+    left: 0;
+    margin-top: 0.3em;
+}
+.paragraph p{
+    text-align: left;
+}
+
+.about .personal-info{
+    padding: 2em 1em ;
+    
+}
+
+
+.about .info-text p{
+   color: var(--bg-white);
+   font-weight: 900;
+   margin-bottom: 0px;
+   padding-top: 10px;
+}
+.about .info-text span{
+    color: var(--bg-white);
+    font-weight: 100;
+}
+.about .buttons .download{
+    margin: 1em 1em 1em 0em;
+}
+.btn{
+    padding: 0.6em 1em;
+    border-radius:1.5em;
+    pointer-events: all;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--bg-white);
+    background-color: var(--bg-black);
+    color: var(--bg-white);
+    z-index: 1;
+    font-weight: 700;
+}
+
+.btn::after{
+    content: '';
+    height: 100%;
+    width: 100%;
+    border-radius: 1.5em;
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    background-color: var(--bg-white);
+    transition:all 0.3s linear;
+    z-index: -1;
+ 
+ }
+ .btn:hover{
+     color:var(--bg-black);
+ }
+ .btn:hover::after{
+     bottom: 0;    
+ }
+.about .skills{
+    padding: 2em 1em ;
+}
+.skill-item h5{
+    font-size: 18px;
+    font-weight: 540;
+    margin-top: 10px;
+}
+.about .skills .skill-item{
+   position: relative;
+   color: var(--bg-white);
+   text-align: left;
+}
+.about .skills .skill-item .progress{
+    height: 7px;
+    width: 100%;
+background-color: var(--bg-grey);
+border-radius: 4px;
+}
+
+.about .skills .skill-item .progress-inner{
+    height: 7px;
+    background-color:var( --bg-white);
+}
+.skill-percent{
+    position: absolute;
+    right: 0;
+    top: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    
+}
+
+.about-image{
+    overflow: hidden;
+    margin: 2em 0em;
+}
+.about-image img{
+    object-fit: cover;
+}
+
+/* education */
+
+
+.title{
+    margin-left: 0.4em;
+}
+.timeline-box{
+   border-radius: 10px;
+   width: 100%;
+   position: relative;
+
+}
+.timeline{
+  box-shadow: 0 0 20px #504e7040;  
+  padding: 2em ;
+  width: 100%;
+  position: relative;
+  text-align: left;
+}
+.timeline .timeline-item{
+    position: relative;
+    padding-left: 30px;
+    padding-bottom: 1em;
+}
+
+.timeline .timeline-item::before{
+    content: '';
+    width: 0.05em;
+    position: absolute;
+    height: 100%;
+    left: 7px;
+    top: 0px;
+    background-color: var( --bg-white);
+
+}
+.timeline .timeline-item .circle-dot{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: var( --bg-white);
+
+}
+
+.timeline .timeline-item .timeline-date{
+    font-size: 12px;
+}
+.timeline .timeline-item .stream{
+    font-size: 20px;
+    font-weight: 600;
+    padding: 5px 0px;
+}
+
+@media(max-width:772px){
+    .timeline{
+         padding-left: 0;
+         padding-right: 0;
+    }
+    .education,.experience{
+        padding: 0px;
+    }
+    .timeline .timeline-item{
+        padding-bottom: 0px;
+    }
+    .timeline .timeline-item .stream{
+        padding: 0px;
+    }
+}
+  
+/* projects */
+.projects{
+    padding: 2em 0em ;
+    transition: all 0.5s linear;
+
+}
+.projects .move{
+    
+    padding: 1em ;
+    /* overflow:hidden ; */
+   
+   
+}
+.projects .move h1{
+    font-size: 10em;
+
+    
+}
+.project{
+    padding: 2em 1em;
+    position: relative;
+   
+}
+.inner-project1{
+    padding: 1em;
+   
+    
+}
+.first-project{
+    height: 400px;
+}
+
+
+.first-project .box1{
+    height: 80%;
+    background-image: url(image/construction.jpg);
+    background-size: cover;
+    width: 100%;
+    position: relative;
+}
+.first-project .box1::after{
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.121);
+    
+}
+.first-project .box1:hover::after {
+    backdrop-filter: blur(1px);
+   
+}
+.first-project .box2{
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.box2{
+    font-size: 2em;
+}
+.inner-project2{
+    padding: 1em 0em;
+    display: flex;
+    justify-content: end;
+}
+.second-project{
+    height:500px ;
+    
+}
+.second-project .box1{
+    height: 80%;
+background-image: url(image/young-cute-woman-cap-glasses-posing-outside-showing-thumbs-up-high-quality-photo.jpg);  
+background-size: cover;
+
+}
+.second-project .box1::after{
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.121);
+    
+}
+.second-project .box1:hover::after {
+    backdrop-filter: blur(1px);
+   
+}
+.second-project .box2{
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+}
+.inner-project3{
+    padding: 1em 0em;
+    display: flex;
+}
+.third-project{
+    height:600px ;
+}
+.third-project .box1{
+    height: 80%;
+}
+.third-project .box2{
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.third-project .box1::after{
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.121);
+    
+}
+.third-project .box1:hover::after {
+    backdrop-filter: blur(1px);
+   
+}
+.inner-project4{
+    padding: 1em 0em;
+    display: flex;
+    justify-content: end;
+}
+.fourth-project{
+    height:600px ;
+    
+}
+.fourth-project .box1{
+    height: 80%;
+    width: 100%;
+    background-image: url(image/currency.png);
+    background-size: cover;
+    background-position: center;
+
+
+}
+.fourth-project .box1::after{
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.121);
+    
+}
+.fourth-project .box1:hover::after {
+    backdrop-filter: blur(1px);
+   
+}
+.fourth-project .box2{
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.abc:hover{
+    cursor: pointer;
+}
+
+/* fotter */
+.footer{
+    padding: 1em;
+}
+.gmail{
+    padding: 2em 0em;
+    overflow: hidden;
+}
+.gmail h1{
+    font-size: 5em;
+    text-align: center;
+  
+}
+.gmail:hover h1{
+    color: var(--bg-grey);
+}
+.find{
+    padding: 3em 0em;
+}
+.find span{
+    display: inline-block;
+    padding: 1em 0em;
+    font-size: 25px;
+}
+.fotter-icon img{
+    margin-right: 1em;
+    transition: all 0.3s linear;
+}
+.fotter-icon  img:hover{
+    transform: scale(1.1);
+}
+
+.new-about {
+    animation: about 0.8s ease-in forwards;
+    /* z-index: 1; */
+}
+
+@keyframes about {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+.new-timeline {
+    animation: timeline 0.8s ease-in forwards;
+    /* z-index: 1; */
+}
+
+@keyframes timeline {
+    0% {
+        transform: translateX(100px);
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
